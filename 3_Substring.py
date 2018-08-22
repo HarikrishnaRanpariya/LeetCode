@@ -1,32 +1,57 @@
-import numpy as np
+"""
+Given a string, find the length of the longest substring without repeating characters.
 
-def find_letter(letter, lst):
-    return any(letter in word for word in lst)
+Example 1:
+
+Input: "abcabcbb"
+Output: 3 
+Explanation: The answer is "abc", which the length is 3.
+Example 2:
+
+Input: "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+Example 3:
+
+Input: "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3. 
+             Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
+"""
+
+class Solution:
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        cnt=0
+        Fcnt=0
+        Olist=[]
+        Tlist=[]
+        
+        Olist=list(s)
+        while Olist:
+            
+            var = Olist.pop(0)
+            
+            if var in Tlist:
+                cnt=len(Tlist)
+                if Fcnt < cnt:
+                    Fcnt = cnt
+                del Tlist[:Tlist.index(var)+1]
+            
+            Tlist.append(var)
+        
+        cnt=len(Tlist)
+        if Fcnt < cnt:
+            Fcnt = cnt
+        
+        return Fcnt
+
 def main():
-	temp = 0
-	c = 1
-	Flag=0
-	sList = list("pwwkew")
-	print("pwwkew")
-	if len(sList) > 1:	
-		for i in range(len(sList)):
-			c=1
-			for j in range(i+1,len(sList)):
-				print("j%d=%c, list=" %(j,sList[j]))
-				print(sList[i:j])
-				s = find_letter(sList[j], sList[i:j])
-				if s == True:
-					print("+")
-					break
-				else:
-					c = len(sList[i:j])+1
-			if temp < c:
-				temp = c
-				print("temp =%d" %temp)
-	else:
-		temp=len(sList)
-		print("lcount is %d" %temp)
-	print("fcount is %d" %temp)
+	s = input("Please enter string: ")
+	obj = Solution()
+	print("Longest substring of \"%s\" is %d" %(s,obj.lengthOfLongestSubstring(s)))
 
 main()
-

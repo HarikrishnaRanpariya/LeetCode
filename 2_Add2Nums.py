@@ -56,7 +56,7 @@ class Solution:
         if carry == 1:
             C_val.append(1)
         return C_val
-"""
+
 def main():
 	l1=ListNode(342)
 	l2=ListNode(465)
@@ -64,4 +64,4 @@ def main():
 	print(obj.addTwoNumbers(l1, l2))
 
 main()
-"""
+
