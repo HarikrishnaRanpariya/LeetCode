@@ -8,6 +8,8 @@ Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 
 """
+
+
 class Solution:
     def twoSum(self, nums, target):
         """
@@ -15,18 +17,22 @@ class Solution:
         :type target: int
         :rtype: List[int]
         """
-        for i in range(len(nums)-1):
-            temp = target - nums[i]
-            for j in range(i+1, len(nums)):
-                if temp == nums[j]:
-                    return [i,j]
-                
-       
+
+        map = {}
+        for i in range(len(nums)):
+            val = target - nums[i]
+            if val in map:
+                return [map[val], i]
+            else:
+                map[nums[i]] = i
+        return []
+
 
 def main():
-	nums = [2, 7, 11, 15]
-	target = 9
-	obj = Solution()
-	print(obj.twoSum(nums, target))
+    nums = [2, 7, 11, 15]
+    target = 9
+    obj = Solution()
+    print(obj.twoSum(nums, target))
+
 
 main()
